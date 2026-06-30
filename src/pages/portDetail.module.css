@@ -19,3 +19,10 @@
   font-weight: bold;
   color: blue;
 }
+.status {
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+}
