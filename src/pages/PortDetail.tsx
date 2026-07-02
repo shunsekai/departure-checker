@@ -61,6 +61,16 @@ export default function PortDetail() {
       }
     }
   };
+  const status = departureStatus();
+  const statusClass =
+    status === "出港可能"
+      ? styles.safe
+      : status === "出港注意"
+        ? styles.warning
+        : status === "出港不可"
+          ? styles.danger
+          : styles.unknown;
+
   const getWindDirection = () => {
     if (windDirection === null) return;
     if (windDirection < 45 || windDirection >= 315) {
@@ -100,7 +110,7 @@ export default function PortDetail() {
           {getWindDirection()}
         </p>
       </div>
-      <p className={styles.status}>{departureStatus()}</p>
+      <p className={`${styles.status} ${statusClass}`}>{status}</p>
     </div>
   );
 }

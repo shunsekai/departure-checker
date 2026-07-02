@@ -26,3 +26,12 @@
   font-weight: bold;
   text-align: center;
 }
+.safe {
+  color: green;
+}
+.warning {
+  color: orange;
+}
+.unknown {
+  color: gray;
+}
