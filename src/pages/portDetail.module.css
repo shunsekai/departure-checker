@@ -35,3 +35,7 @@
 .unknown {
   color: gray;
 }
+.error {
+  color: red;
+  font-weight: bold;
+}

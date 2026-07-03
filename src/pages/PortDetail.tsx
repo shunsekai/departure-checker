@@ -9,17 +9,25 @@ export default function PortDetail() {
   const [windSpeed, setWindSpeed] = useState<number | null>(null);
   const [temperature, setTemperature] = useState<number | null>(null);
   const [windDirection, setWindDirection] = useState<number | null>(null);
+  const [loading, setLoading] = useState(true);
   const [boatSize, setBoatSize] = useState("large");
+  const [error, setError] = useState("");
   useEffect(() => {
     const fetchWeather = async () => {
       if (!port) return;
-      const response = await fetch(
-        `https://api.open-meteo.com/v1/forecast?latitude=${port.lat}&longitude=${port.lon}&current=wind_speed_10m,temperature_2m,wind_direction_10m`,
-      );
-      const data = await response.json();
-      setWindSpeed(data.current.wind_speed_10m);
-      setTemperature(data.current.temperature_2m);
-      setWindDirection(data.current.wind_direction_10m);
+      try {
+        const response = await fetch(
+          `https://api.open-meteo.com/v1/forecastt?latitude=${port.lat}&longitude=${port.lon}&current=wind_speed_10m,temperature_2m,wind_direction_10m`,
+        );
+        const data = await response.json();
+        setWindSpeed(data.current.wind_speed_10m);
+        setTemperature(data.current.temperature_2m);
+        setWindDirection(data.current.wind_direction_10m);
+        setLoading(false);
+      } catch {
+        setError("天気情報の取得に失敗しました");
+        setLoading(false);
+      }
     };
     fetchWeather();
   }, [port]);
@@ -29,6 +37,12 @@ export default function PortDetail() {
   }
 
   const departureStatus = () => {
+    if (loading) {
+      return "判定中...";
+    }
+    if (error) {
+      return "判定できません";
+    }
     if (windSpeed === null) {
       return "判定できません";
     }
@@ -46,7 +60,7 @@ export default function PortDetail() {
       if (windSpeed < 7) {
         return "出港可能";
       } else if (windSpeed >= 7 && windSpeed < 10) {
-        ("出港注意");
+        return "出港注意";
       } else {
         return "出港不可";
       }
@@ -98,15 +112,22 @@ export default function PortDetail() {
         <option value="mediam">中型</option>
         <option value="small">小型</option>
       </select>
+      {error && <p className={styles.error}>{error}</p>}
       <div className={styles.info}>
         <p>緯度:{port.lat}</p>
         <p>経度:{port.lon}</p>
         <p className={styles.wind}>
-          {windSpeed !== null ? `風速:${windSpeed}m/s` : "風速未取得"}
+          {loading ? "取得中..." : error ? "取得失敗" : `風速:${windSpeed}m/s`}
         </p>
-        <p>{temperature !== null ? `気温:${temperature}℃` : "気温未取得"}</p>
         <p>
-          {windDirection !== null ? `風向:${windDirection}°` : "風向未取得"}
+          {loading ? "取得中..." : error ? "取得失敗" : `気温:${temperature}度`}
+        </p>
+        <p>
+          {loading
+            ? "取得中..."
+            : error
+              ? "取得失敗"
+              : `風向:${windDirection}°`}
           {getWindDirection()}
         </p>
       </div>
