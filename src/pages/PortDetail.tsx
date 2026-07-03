@@ -17,7 +17,7 @@ export default function PortDetail() {
       if (!port) return;
       try {
         const response = await fetch(
-          `https://api.open-meteo.com/v1/forecastt?latitude=${port.lat}&longitude=${port.lon}&current=wind_speed_10m,temperature_2m,wind_direction_10m`,
+          `https://api.open-meteo.com/v1/forecast?latitude=${port.lat}&longitude=${port.lon}&current=wind_speed_10m,temperature_2m,wind_direction_10m`,
         );
         const data = await response.json();
         setWindSpeed(data.current.wind_speed_10m);
@@ -97,7 +97,19 @@ export default function PortDetail() {
       return "西";
     }
   };
-
+  const getWeatherText = (
+    value: number | null,
+    label: string,
+    unit: string,
+  ) => {
+    if (loading) {
+      return "取得中...";
+    }
+    if (error || value === null) {
+      return `${label}取得失敗`;
+    }
+    return `${label}${value}${unit}`;
+  };
   return (
     <div className={styles.portCard}>
       <h1 className={styles.title}>{port.name}</h1>
@@ -117,17 +129,11 @@ export default function PortDetail() {
         <p>緯度:{port.lat}</p>
         <p>経度:{port.lon}</p>
         <p className={styles.wind}>
-          {loading ? "取得中..." : error ? "取得失敗" : `風速:${windSpeed}m/s`}
+          {getWeatherText(windSpeed, "風速", "m/s")}
         </p>
+        <p>{getWeatherText(temperature, "気温", "度")}</p>
         <p>
-          {loading ? "取得中..." : error ? "取得失敗" : `気温:${temperature}度`}
-        </p>
-        <p>
-          {loading
-            ? "取得中..."
-            : error
-              ? "取得失敗"
-              : `風向:${windDirection}°`}
+          {getWeatherText(windDirection, "風向", "°")}
           {getWindDirection()}
         </p>
       </div>
