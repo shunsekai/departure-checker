@@ -32,6 +32,15 @@ export default function PortDetail() {
     fetchWeather();
   }, [port]);
 
+  useEffect(() => {
+    if (!port) return;
+    const saveHistory = localStorage.getItem("history");
+    const history: string[] = saveHistory ? JSON.parse(saveHistory) : [];
+    const newHistory = history.filter((id) => id !== port.id);
+    newHistory.unshift(port.id);
+    localStorage.setItem("history", JSON.stringify(newHistory));
+  }, [port]);
+
   if (!port) {
     return <h1>港が見つかりません</h1>;
   }

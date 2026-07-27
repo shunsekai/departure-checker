@@ -1,6 +1,6 @@
 import PortCard from "../components/PortCard";
 import { ports } from "../data/ports";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 type HomeProps = {
   favorites: string[];
   setFavorites: React.Dispatch<React.SetStateAction<string[]>>;
