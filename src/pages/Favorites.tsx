@@ -6,6 +6,9 @@ type FavoritesProps = {
 };
 export default function Favorites({ favorites, setFavorites }: FavoritesProps) {
   const favoritePorts = ports.filter((port) => favorites.includes(port.id));
+  if (favoritePorts.length === 0) {
+    return <p>お気に入りはありません</p>;
+  }
   const toggleFavorite = (id: string) => {
     setFavorites(favorites.filter((favoritesId) => favoritesId !== id));
   };

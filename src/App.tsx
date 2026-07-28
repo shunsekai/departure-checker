@@ -4,6 +4,7 @@ import Home from "./pages/Home.tsx";
 import History from "./pages/History.tsx";
 import PortDetail from "./pages/PortDetail.tsx";
 import Favorites from "./pages/Favorites.tsx";
+import NotFound from "./pages/NotFound.tsx";
 import styles from "./App.module.css";
 
 export default function App() {
@@ -40,6 +41,7 @@ export default function App() {
         />
         <Route path="/ports/:portId" element={<PortDetail />} />
         <Route path="/history" element={<History />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

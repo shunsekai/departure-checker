@@ -7,17 +7,23 @@ export default function History() {
   const historyPorts = history
     .map((id) => ports.find((port) => port.id === id))
     .filter((port) => port !== undefined);
+  if (history.length === 0) {
+    return <p>閲覧履歴はありません</p>;
+  }
   return (
     <>
-      {historyPorts.map((port) => (
-        <PortCard
-          key={port.id}
-          name={port.name}
-          id={port.id}
-          isFavorite={false}
-          onFavoriteClick={() => {}}
-        />
-      ))}
+      {historyPorts.map((port) => {
+        if (!port) return null;
+        return (
+          <PortCard
+            key={port.id}
+            name={port.name}
+            id={port.id}
+            isFavorite={false}
+            onFavoriteClick={() => {}}
+          />
+        );
+      })}
     </>
   );
 }
