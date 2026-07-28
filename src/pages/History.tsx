@@ -1,4 +1,5 @@
 import { ports } from "../data/ports.ts";
+import styles from "./History.module.css";
 import PortCard from "../components/PortCard.tsx";
 
 export default function History() {
@@ -11,7 +12,7 @@ export default function History() {
     return <p>閲覧履歴はありません</p>;
   }
   return (
-    <>
+    <div className={styles.container}>
       {historyPorts.map((port) => {
         if (!port) return null;
         return (
@@ -24,6 +25,6 @@ export default function History() {
           />
         );
       })}
-    </>
+    </div>
   );
 }

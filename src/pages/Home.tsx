@@ -1,4 +1,5 @@
 import PortCard from "../components/PortCard";
+import styles from "./Home.module.css";
 import { ports } from "../data/ports";
 import React, { useEffect } from "react";
 type HomeProps = {
@@ -20,7 +21,7 @@ export default function Home({ favorites, setFavorites }: HomeProps) {
   }, [favorites]);
 
   return (
-    <>
+    <div className={styles.container}>
       {ports.map((port) => (
         <PortCard
           key={port.id}
@@ -30,6 +31,6 @@ export default function Home({ favorites, setFavorites }: HomeProps) {
           onFavoriteClick={() => toggleFavorite(port.id)}
         />
       ))}
-    </>
+    </div>
   );
 }

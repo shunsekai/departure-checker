@@ -1,4 +1,5 @@
 import { ports } from "../data/ports";
+import styles from "./Favorites.module.css";
 import PortCard from "../components/PortCard.tsx";
 type FavoritesProps = {
   favorites: string[];
@@ -13,7 +14,7 @@ export default function Favorites({ favorites, setFavorites }: FavoritesProps) {
     setFavorites(favorites.filter((favoritesId) => favoritesId !== id));
   };
   return (
-    <>
+    <div className={styles.container}>
       {favoritePorts.map((port) => (
         <PortCard
           key={port.id}
@@ -23,6 +24,6 @@ export default function Favorites({ favorites, setFavorites }: FavoritesProps) {
           onFavoriteClick={() => toggleFavorite(port.id)}
         />
       ))}
-    </>
+    </div>
   );
 }
