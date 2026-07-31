@@ -7,6 +7,21 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   font-family: sans-serif;
 }
+.selectArea {
+  margin: 20px 0;
+}
+.selectArea select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px soliid #ccc;
+}
+.selectArea label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
 .title {
   font-size: 24px;
   margin-bottom: 16px;
@@ -47,4 +62,23 @@
   .title {
     font-size: 20px;
   }
+}
+.statusArea {
+  margin-top: 28px;
+}
+.statusArea h2 {
+  margin-bottom: 12px;
+}
+.section {
+  margin-top: 24px;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+.section h2 {
+  margin-bottom: 12px;
+  font-size: 20px;
+}
+.section p {
+  margin: 8px 0;
 }

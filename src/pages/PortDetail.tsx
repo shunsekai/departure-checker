@@ -65,7 +65,7 @@ export default function PortDetail() {
       }
     }
 
-    if (boatSize === "mediam") {
+    if (boatSize === "medium") {
       if (windSpeed < 7) {
         return "出港可能";
       } else if (windSpeed >= 7 && windSpeed < 10) {
@@ -121,32 +121,37 @@ export default function PortDetail() {
   };
   return (
     <div className={styles.portCard}>
-      <h1 className={styles.title}>{port.name}</h1>
-      <label>ボートサイズ</label>
-      <select
-        value={boatSize}
-        onChange={(event) => {
-          setBoatSize(event.target.value);
-        }}
-      >
-        <option value="large">大型</option>
-        <option value="mediam">中型</option>
-        <option value="small">小型</option>
-      </select>
+      <h1 className={styles.title}>🌊 {port.name}</h1>
+      <div className={styles.selectArea}>
+        <label htmlFor="boatSize">ボートサイズ</label>
+        <select
+          id="boatSize"
+          value={boatSize}
+          onChange={(event) => {
+            setBoatSize(event.target.value);
+          }}
+        >
+          <option value="large">大型</option>
+          <option value="medium">中型</option>
+          <option value="small">小型</option>
+        </select>
+      </div>
       {error && <p className={styles.error}>{error}</p>}
-      <div className={styles.info}>
-        <p>緯度:{port.lat}</p>
-        <p>経度:{port.lon}</p>
+      <div className={styles.section}>
+        <h2>現在の天気</h2>
         <p className={styles.wind}>
-          {getWeatherText(windSpeed, "風速", "m/s")}
+          💨 {getWeatherText(windSpeed, "風速", "m/s")}
         </p>
-        <p>{getWeatherText(temperature, "気温", "度")}</p>
+        <p>🌡 {getWeatherText(temperature, "気温", "度")}</p>
         <p>
-          {getWeatherText(windDirection, "風向", "°")}
+          🧭 {getWeatherText(windDirection, "風向", "°")}
           {getWindDirection()}
         </p>
       </div>
-      <p className={`${styles.status} ${statusClass}`}>{status}</p>
+      <div className={styles.statusArea}>
+        <h2>出港判断</h2>
+        <p className={`${styles.status} ${statusClass}`}>{status}</p>
+      </div>
     </div>
   );
 }
