@@ -40,15 +40,19 @@ export default function Home({ favorites, setFavorites }: HomeProps) {
         </p>
       </div>
 
-      {filteredPorts.map((port) => (
-        <PortCard
-          key={port.id}
-          name={port.name}
-          id={port.id}
-          isFavorite={favorites.includes(port.id)}
-          onFavoriteClick={() => toggleFavorite(port.id)}
-        />
-      ))}
+      {filteredPorts.length > 0 ? (
+        filteredPorts.map((port) => (
+          <PortCard
+            key={port.id}
+            name={port.name}
+            id={port.id}
+            isFavorite={favorites.includes(port.id)}
+            onFavoriteClick={() => toggleFavorite(port.id)}
+          />
+        ))
+      ) : (
+        <p className={styles.noResult}>該当する港がありません</p>
+      )}
     </div>
   );
 }
