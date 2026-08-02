@@ -27,13 +27,23 @@ export default function Home({ favorites, setFavorites }: HomeProps) {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <input
-          type="text"
-          placeholder="港名で検索"
-          value={search}
-          onChange={(event) => setSearch(event.target.value)}
-          className={styles.search}
-        />
+        <div className={styles.searchBox}>
+          <input
+            type="text"
+            placeholder="港名で検索"
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+            className={styles.search}
+          />
+          {search && (
+            <button
+              onClick={() => setSearch("")}
+              className={styles.clearButton}
+            >
+              ✕
+            </button>
+          )}
+        </div>
         <h1>🌊港の風・出港情報</h1>
         <p>
           各港の現在の風速、気温を確認しボートサイズに応じた出港判断をサポートします

@@ -44,3 +44,20 @@
   color: #666;
   margin-top: 40px;
 }
+
+.searchBox {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 24px;
+}
+.clearButton {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+}
