@@ -20,6 +20,7 @@ export default function Home({ favorites, setFavorites }: HomeProps) {
     console.log("保存", favorites);
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
+
   const filteredPorts = ports.filter((port) =>
     port.name.toLowerCase().includes(search.toLocaleLowerCase()),
   );

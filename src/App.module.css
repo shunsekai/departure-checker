@@ -9,3 +9,17 @@
   color: black;
   font-weight: bold;
 }
+.footer {
+  margin-top: 40px;
+  padding: 20px;
+  text-align: center;
+}
+.notice {
+  font-size: 0.9rem;
+  color: #666;
+}
+.credit {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: #888;
+}

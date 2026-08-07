@@ -1,50 +1,50 @@
-# React + TypeScript + Vite
+# Departure Checker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+##　使用技術
 
-Currently, two official plugins are available:
+- React
+- Typescript
+- Vite
+- React Router
+- CSS Modules
+- Open-Meteo API
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 機能
 
-## Expanding the ESLint configuration
+- 港一覧表示
+- 港名検索
+- お気に入り登録・解除
+- 閲覧履歴表示
+- 現在の天気情報取得
+- ボートサイズ別の出港判断
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 工夫した点
 
-- Configure the top-level `parserOptions` property like this:
+- React Routerを使用してページごとのルーティングを実装
+- LocalStorageを利用してお気に入りと閲覧履歴を保存
+- Open-Meteo APIから現在の天気情報を取得
+- 天気情報の取得中・取得失敗時の表示を分けて、状態が分かるようにした
+- ボートサイズごとに風速の基準を設定し、出港可能・出港注意・出港不可を判定できるようにした
+- TypeScriptを使用して状態やデータに型を設定した
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 起動方法
+
+```bash
+npm install
+npm run dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+ターミナルに表示されたURLにアクセスしてください
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## ビルド
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+npm run build
 ```
+
+## 注意事項
+
+このアプリの出港判断は安全を保障するものではありません。
+実際の出港については、気象情報や現地の状況を確認したうえで、ご自身で判断してください。
+
+Weather data: Open-Meteo

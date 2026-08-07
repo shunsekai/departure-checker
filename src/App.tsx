@@ -43,6 +43,12 @@ export default function App() {
         <Route path="/history" element={<History />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <footer className={styles.footer}>
+        <p className={styles.notice}>
+          ※本アプリの出港判断は参考情報です。実際の出港可否は気象情報や現地の状況を確認のうえ、ご自身で判断してください。
+        </p>
+        <p className={styles.credit}>Weather data: Open-Meteo</p>
+      </footer>
     </BrowserRouter>
   );
 }
