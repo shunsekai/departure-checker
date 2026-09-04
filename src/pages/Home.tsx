@@ -17,7 +17,6 @@ export default function Home({ favorites, setFavorites }: HomeProps) {
   };
 
   useEffect(() => {
-    console.log("保存", favorites);
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
 
