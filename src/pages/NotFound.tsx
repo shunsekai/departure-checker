@@ -1,3 +1,2 @@
 export default function NotFound() {
-  return <div>NotFound</div>;
-}
+  return <h1>ページが見つかりません</h1>}
