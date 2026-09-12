@@ -24,9 +24,9 @@ export default function PortDetail() {
         if (!response.ok) {
           throw new Error("天気情報の取得に失敗しました");
         }
-        setWindSpeed(data.current.wind_speed_10m);
-        setTemperature(data.current.temperature_2m);
-        setWindDirection(data.current.wind_direction_10m);
+        setWindSpeed(data.current.wind_speed_10m ?? null);
+        setTemperature(data.current.temperature_2m ?? null);
+        setWindDirection(data.current.wind_direction_10m ?? null);
       } catch {
         setError("天気情報の取得に失敗しました");
       } finally {
